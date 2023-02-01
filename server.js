@@ -35,7 +35,7 @@ app.use(express.json());  // to read body of req from frontned
 
 //Nodemailer to send email on form submission
 const transporter=nodemailer.createTransport({
-    port:process.env.PORT,
+    port:465,
     host:"smptp.gmail.com",
     auth:{
         user:process.env.EMAIL_USER,
