@@ -32,6 +32,18 @@ app.use(cors());  //cors
 app.use(express.json());  // to read body of req from frontned
 
 
+//Nodemailer to send email on form submission
+const transporter=nodemailer.createTransport({
+    port:process.env.PORT,
+    host:"smptp.gmail.com",
+    auth:{
+        user:process.env.EMAIL_USER,
+        pass:process.env.EMAIL_PASS,
+    },
+    secure:true,
+})
+
+
 //REST Api
 
 //Read
@@ -69,6 +81,18 @@ app.post("/",async(req,res)=>{
                 message:"Data saved successfully!!..",
                 id:user.id
             });
+            
+            //sending mail of confirmation to the user
+            const mailData={
+                from:process.env.EMAIL_USER,
+                to:email,
+                subject:"Confirmation",
+                text:"You have submitted your form sucessfully. Regards"
+            };
+            transporter.sendMail(mailOptions,(err,info)=>{
+                if(err)console.log(err)
+                else console.log(info);
+            })
         }
 
     }catch(err){
