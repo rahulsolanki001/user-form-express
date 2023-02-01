@@ -90,10 +90,10 @@ app.post("/",async(req,res)=>{
                 subject:"Confirmation",
                 text:"You have submitted your form sucessfully. Regards"
             };
-            transporter.sendMail(mailData,(err,info)=>{
+            await transporter.sendMail(mailData,(err,info)=>{
                 if(err)console.log(err)
                 else console.log(info);
-            })
+            });
         }
 
     }catch(err){
