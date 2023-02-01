@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import nodemailer from "nodemailer";
 
 //port for server
 const port=process.env.PORT || 5000;
